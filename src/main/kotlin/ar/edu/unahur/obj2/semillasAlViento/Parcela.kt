@@ -35,12 +35,9 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
     parcelas.filter{it.todasLasPlantasDanSemillas()}
 
   fun plantarEstrategicamente(planta: Planta) {
-    /*cohesión ya que realiza 2 acciones al mismo tiempo*/
-    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!! /*simplicidad-KISS deberia hacer un metodo
-    aparte que devuelva la parcela con mayor espacio disponible*/
-    laElegida.plantas.add(planta) /*Redundancia mínima, repite el método plantar y no lo reutiliza*/
-
-
+    this.parcelaConMasLugar().plantar(planta)
   }
 
+  fun parcelaConMasLugar() =
+    parcelas.maxBy{ it.cantidadMaximaPlantas() - it.cantidadPlantas}!!
 }

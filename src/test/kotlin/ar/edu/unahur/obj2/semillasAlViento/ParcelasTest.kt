@@ -93,5 +93,17 @@ class ParcelasTest : DescribeSpec({
                 agricultora1.parcelasSemilleras().shouldBe(listOf(parcelaDos))
             }
         }
+        describe("plantar estrategicamente una planta"){
+            it("parcela con mas lugar"){
+                agricultora1.parcelaConMasLugar().shouldBe(parcelaUno)
+            }
+            it("comprobar si puede plantar en una parcela"){
+               shouldThrowAny {agricultora1.plantarEstrategicamente(sojita)}
+            }
+            it("plantar en la que tenga mas lugar"){
+                agricultora1.plantarEstrategicamente(sojaSemillera)
+                parcelaUno.plantas.contains(sojaSemillera).shouldBe(true)
+            }
+        }
     }
 })
