@@ -42,7 +42,6 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
     }
   }
 
-
   fun parcelasSemilleras() =
     /*Fallos en mutaciones controladas
  * El método realiza 2 recorridos en 2 listas distintas y genera mutaciones
@@ -52,9 +51,6 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
       planta -> planta.daSemillas()
       }
     }
-
-
-
 
   fun plantarEstrategicamente(planta: Planta) {
     /*cohesión ya que realiza 2 acciones al mismo tiempo*/
