@@ -3,8 +3,8 @@ package ar.edu.unahur.obj2.semillasAlViento
 abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {   //mutación controlada ya que la altura no se deberia poder cambiar
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
-    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
+  /*fun parcelaTieneComplicaciones(parcela: Parcela) =
+    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }*/
 
   abstract fun horasDeSolQueTolera(): Int
   abstract fun daSemillas(): Boolean

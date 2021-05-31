@@ -4,6 +4,8 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
   var cantidadPlantas = 0 // (des)acoplamiento EN VEZ DE VARIABLE DEBE SER UNA FUNCION SIZE DE LA LISTA PLANTAS
 
+  fun parcelaTieneComplicaciones() =
+    plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
 
   fun superficie() = ancho * largo
   fun cantidadMaximaPlantas() =

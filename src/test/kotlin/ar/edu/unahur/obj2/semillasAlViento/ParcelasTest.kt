@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -11,7 +12,7 @@ class ParcelasTest : DescribeSpec({
         val sojaReciente = Soja(2019, 1.71f, false)
         val sojaAntigua = Soja(2004, 1.55f, false)
         val sojitaTransgenica = Soja(2010, 1.32f, true)
-        val parcelaUno = Parcela(6,6, 12)
+        val parcelaUno = Parcela(6,6, 11)
         val parcelaDos = Parcela(10,5, 10)
 
 
@@ -28,13 +29,13 @@ class ParcelasTest : DescribeSpec({
             }
         }
         describe("saber si es fuerte"){
-            it("si es de menta y mide mas de 0.4"){
-                mentita.esFuerte().shouldBe(true)
+            it("si es de menta"){
+                mentita.esFuerte().shouldBe(false)
             }
-            it("si es de soja, y su obtencion es anterior a 2007 o su altura es menor a 0.4 metros" ){
+            it("si es de soja" ){
                 sojita.esFuerte().shouldBe(false)
             }
-            it("si es de soja, su obtencion es posterior a 2007 y su altura mayor a 0.4"){
+            it("si es de soja transgenica"){
                 sojitaTransgenica.esFuerte().shouldBe(true)
             }
         }
@@ -64,16 +65,30 @@ class ParcelasTest : DescribeSpec({
                 parcelaDos.cantidadMaximaPlantas().shouldBe(10)
             }
         }
-        describe("plantar en parcelas"){
-            it("en parcelaUno"){
-                parcelaUno.plantar(mentita)
-                parcelaUno.plantar(sojita)
-                parcelaUno.plantar(sojaAntigua)
-                parcelaUno.plantar(sojaReciente)
+
+
+        describe("si tiene complicaciones"){
+            parcelaDos.plantar(mentita)
+            parcelaDos.plantar(sojita)
+            parcelaUno.plantar(sojaAntigua)
+            parcelaUno.plantar(sojaReciente)
+            parcelaUno.plantar(sojitaTransgenica)
+            it("parcelaUno"){
+                parcelaUno.parcelaTieneComplicaciones().shouldBe(true)
 
             }
-            it("en parcelaDos"){
-                parcelaDos.plantar(sojitaTransgenica)
+            it("parcelaDos"){
+                parcelaDos.parcelaTieneComplicaciones().shouldBe(false)
+            }
+
+        }
+
+        describe("cantidad de plantas en parcela"){
+            it("en parcela uno"){
+                parcelaUno.cantidadPlantas = 4
+            }
+            it ("en parcela dos"){
+                parcelaDos.cantidadPlantas = 1
             }
         }
     }
