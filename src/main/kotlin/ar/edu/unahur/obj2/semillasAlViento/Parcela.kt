@@ -25,32 +25,14 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
       cantidadPlantas += 1 //consecuencia del (des)acoplamiento en la linea 5
     }
   }
+  fun todasLasPlantasDanSemillas() =
+    plantas.all {it.daSemillas()}
 }
 
 class Agricultora(val parcelas: MutableList<Parcela>) {
-  /*Fallo en Simplicidad-YAGNI
-  * La consigna nos indica que la tierra no puede ser comprada ni vendida, programaron "por las dudas"*/
-  var ahorrosEnPesos = 20000
-
-  // Suponemos que una parcela vale 5000 pesos
-  fun comprarParcela(parcela: Parcela) {
-    /*Fallo en Simplicidad-YAGNI
-  * La consigna nos indica que la tierra no puede ser comprada ni vendida, programaron "por las dudas"*/
-    if (ahorrosEnPesos >= 5000) {
-      parcelas.add(parcela)
-      ahorrosEnPesos -= 5000
-    }
-  }
 
   fun parcelasSemilleras() =
-    /*Fallos en mutaciones controladas
- * El método realiza 2 recorridos en 2 listas distintas y genera mutaciones
- * Debería aplicarse abstraccion para mayor legibilidad del código*/
-    parcelas.filter {
-      parcela -> parcela.plantas.all {
-      planta -> planta.daSemillas()
-      }
-    }
+    parcelas.filter{it.todasLasPlantasDanSemillas()}
 
   fun plantarEstrategicamente(planta: Planta) {
     /*cohesión ya que realiza 2 acciones al mismo tiempo*/

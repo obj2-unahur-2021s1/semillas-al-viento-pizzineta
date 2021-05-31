@@ -40,11 +40,9 @@ class ParcelasTest : DescribeSpec({
                 mentita.daSemillas().shouldBe(true)
             }
             it("Soja da semillas si la obtencion de semilla es mayor a 2007 y su altura es mayor a 1. No debe ser transgenica") {
-                sojita.daSemillas().shouldBe(false)
-                sojaAntigua.daSemillas().shouldBe(false)
                 sojaReciente.daSemillas().shouldBe(true)
             }
-            it("si la soja es transgenica no da semillas") {
+            it("si la soja es transgenica") {
                 sojitaTransgenica.daSemillas().shouldBe(false)
             }
         }
@@ -95,8 +93,5 @@ class ParcelasTest : DescribeSpec({
                 agricultora1.parcelasSemilleras().shouldBe(listOf(parcelaDos))
             }
         }
-
-
-
     }
 })
