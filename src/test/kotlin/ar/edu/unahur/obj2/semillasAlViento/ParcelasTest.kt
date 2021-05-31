@@ -66,29 +66,22 @@ class ParcelasTest : DescribeSpec({
             }
         }
 
+        describe("saber si se puede plantar"){
+            it("si las horas de sol por dia de la parcela son mayores que las horas de sol que toleta + 2"){
+                shouldThrowAny { parcelaUno.plantar(mentita) }
+            }
+            it("la parcela no esta llena y soporta las horas de sol que recibe la parcela"){
+                parcelaUno.plantar(sojaReciente)
+            }
+        }
 
         describe("si tiene complicaciones"){
-            parcelaDos.plantar(mentita)
-            parcelaDos.plantar(sojita)
             parcelaUno.plantar(sojaAntigua)
             parcelaUno.plantar(sojaReciente)
             parcelaUno.plantar(sojitaTransgenica)
             it("parcelaUno"){
-                parcelaUno.parcelaTieneComplicaciones().shouldBe(true)
+                parcelaUno.tieneComplicaciones().shouldBe(true)
 
-            }
-            it("parcelaDos"){
-                parcelaDos.parcelaTieneComplicaciones().shouldBe(false)
-            }
-
-        }
-
-        describe("cantidad de plantas en parcela"){
-            it("en parcela uno"){
-                parcelaUno.cantidadPlantas = 4
-            }
-            it ("en parcela dos"){
-                parcelaDos.cantidadPlantas = 1
             }
         }
     }

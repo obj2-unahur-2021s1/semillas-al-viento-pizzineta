@@ -1,10 +1,12 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
+import java.lang.Exception
+
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
   var cantidadPlantas = 0 // (des)acoplamiento EN VEZ DE VARIABLE DEBE SER UNA FUNCION SIZE DE LA LISTA PLANTAS
 
-  fun parcelaTieneComplicaciones() =
+  fun tieneComplicaciones() =
     plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
 
   fun superficie() = ancho * largo
@@ -14,10 +16,10 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 
   fun plantar(planta: Planta) { //fallas de cohesión ya que realiza mas de una acción al mismo tiempo
     if (cantidadPlantas == this.cantidadMaximaPlantas()) {
-      println("Ya no hay lugar en esta parcela") //robustez, debería devolver exception
+      throw Exception("Ya no hay lugar en esta parcela") //robustez, debería devolver exception
     } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) { //Simplicidad-KISS
                                                         //debería ser un metodo aparte el saber si tiene complicaciones
-      println("No se puede plantar esto acá, se va a quemar") //robustez, debería devolver exception
+      throw Exception("No se puede plantar esto acá, se va a quemar") //robustez, debería devolver exception
     } else {
       plantas.add(planta)
       cantidadPlantas += 1 //consecuencia del (des)acoplamiento en la linea 5
