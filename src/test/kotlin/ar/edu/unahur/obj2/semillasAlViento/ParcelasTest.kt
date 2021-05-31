@@ -6,10 +6,10 @@ import io.kotest.matchers.shouldBe
 
 class ParcelasTest : DescribeSpec({
     val mentita = Menta(1998, 1.21f)
-    val sojita = Soja(2000, 0.51f, false)
-    val sojaReciente = Soja(2019, 1.71f, false)
-    val sojaAntigua = Soja(2004, 1.55f, false)
-    val sojitaTransgenica = Soja(2010, 1.32f, true)
+    val sojita = Soja(2000, 0.51f)
+    val sojaReciente = Soja(2019, 1.71f)
+    val sojaAntigua = Soja(2004, 1.55f)
+    val sojitaTransgenica = SojaTransgenica(2010, 1.32f)
     val parcelaUno = Parcela(6,6, 11)
     val parcelaDos = Parcela(10,5, 10)
     describe("una planta") {
@@ -83,7 +83,8 @@ class ParcelasTest : DescribeSpec({
     }
     describe("agricultoras"){
         val agricultora1 = Agricultora(mutableListOf(parcelaUno, parcelaDos))
-        val sojaSemillera = Soja(2009, 1.8f, false)
+        val sojaSemillera = Soja(2009, 1.8f)
+
         parcelaUno.plantar(sojaAntigua)
         parcelaUno.plantar(sojaReciente)
         parcelaUno.plantar(sojitaTransgenica)
@@ -94,5 +95,8 @@ class ParcelasTest : DescribeSpec({
                 agricultora1.parcelasSemilleras().shouldBe(listOf(parcelaDos))
             }
         }
+
+
+
     }
 })
