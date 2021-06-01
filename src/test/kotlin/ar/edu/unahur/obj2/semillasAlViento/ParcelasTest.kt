@@ -80,7 +80,7 @@ class ParcelasTest : DescribeSpec({
         }
     }
     describe("agricultoras"){
-        val agricultora1 = Agricultora(mutableListOf(parcelaUno, parcelaDos))
+        val agricultora1 = Agricultora(listOf<Parcela>(parcelaUno, parcelaDos))
         val sojaSemillera = Soja(2009, 1.8f)
 
         parcelaUno.plantar(sojaAntigua)
